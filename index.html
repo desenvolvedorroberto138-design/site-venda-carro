@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEIRA VEÍCULOS - Seu próximo veículo está a um clique de distância!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #010916;
+            --light-blue: #007AFF;
+            --white: #FFFFFF;
+            --light-gray: #F3F3F3;
+            --dark-gray: #333333;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-gray);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #010916;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .hamburger {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #FFFFFF;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #010916;
+            padding: 20px;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--light-blue);
+        }
+/* Hero Section */
+.hero {
+  width: 100%;
+  height: 30vh; /* altura da faixa — pode ajustar (ex: 400px ou 50vh) */
+  position: relative;
+  overflow: hidden;
+  background-color: #000; /* cor de fundo nas sobras */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* mostra a imagem inteira */
+  object-position: center center; /* centraliza vertical e horizontalmente */
+  background-color: #000; /* fundo nas áreas sobrando */
+}
+
+
+
+        @media (min-width: 769px) {
+           
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+
+        /* Vehicles Section */
+        .vehicles {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-blue);
+        }
+
+        .carousel-container {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 400px;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .carousel-btn {
+            background: rgba(255,255,255,0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background: var(--white);
+        }
+
+        .vehicle-info {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+
+        .vehicle-title {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .vehicle-description {
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+        }
+
+        .spec-value {
+            font-size: 0.95rem;
+            color: var(--dark-gray);
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 30px;
+            color: var(--dark-gray);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .contact-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--light-blue);
+        }
+
+        .map-container {
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--light-blue);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--light-blue);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* WhatsApp Fixed Button */
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-fixed:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero, .hero-carousel {
+                min-height: 300px;
+            }
+
+         
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .carousel {
+                height: 300px;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero, .hero-carousel {
+                min-height: 250px;
+            }
+
+            .vehicles, .contact {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .carousel {
+                height: 250px;
+            }
+
+            .vehicle-info {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#inicio" class="logo"><img src="assets/logo/logo-aparecido.png" height="70px" alt="Meira Veículos"></a>
+            <nav class="nav-links">
+                <a href="#inicio">Início</a>
+                <a href="#veiculos">Veículos</a>
+                <a href="#contato">Contato</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+            </nav>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-carousel">
+            <div class="hero-slide active">
+                <img src="assets/logo/hero-logo-1.png" alt="Silva Veículos - Carros de Qualidade">
+            </div>
+            <div class="hero-slide">
+                <img src="assets/logo/hero-logo-2.png" alt="Silva Veículos - Seu Próximo Veículo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Section -->
+    <section class="vehicles" id="veiculos">
+        <div class="container">
+            <h2 class="section-title">Nossos Veículos em Destaque</h2>
+            
+            <!-- Vehicle 1: Renault Kwid -->
+            <div class="carousel-container">
+                <div class="carousel" id="carousel1">
+                    <div class="carousel-slide">
+                        <img src="assets/logo/car/frente-kwid-2019-prata.jpg" alt="Renault Kwid Frente">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/logo/car/traseira-kwid-2019-prata.jpg" alt="Renault Kwid Traseira">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/logo/car/banco-motorista-kwid-2019.webp" alt="Renault Kwid Lateral Direita">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/logo/car/banco-passageiro-kwid-2019.webp" alt="Renault Kwid Lateral Esquerda">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/logo/car/painel-kwid-2019.webp" alt="Renault Kwid Interior Bancos">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/logo/car/painel-frontal-kwid-2019.webp" alt="Renault Kwid Interior Painel">
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="prev1">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn" id="next1">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="vehicle-info animate-fade-in">
+                <h3 class="vehicle-title">Renault Kwid 1.0 12V SCE Flex Zen Manual 2019</h3>
+                <p class="vehicle-description">Econômico, prático e ideal para o dia a dia urbano.</p>
+                
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Ano/Modelo</span>
+                        <span class="spec-value">2019</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Motorização</span>
+                        <span class="spec-value">1.0 12V SCE Flex</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Câmbio</span>
+                        <span class="spec-value">Manual de 5 marchas</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Direção</span>
+                        <span class="spec-value">Elétrica</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Combustível</span>
+                        <span class="spec-value">Flex (Gasolina / Etanol)</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Potência</span>
+                        <span class="spec-value">70 cv (etanol) / 66 cv (gasolina)</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Consumo médio</span>
+                        <span class="spec-value">15,3 km/l (gasolina) / 10,8 km/l (etanol)</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Porta-malas</span>
+                        <span class="spec-value">290 litros</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Cor</span>
+                        <span class="spec-value">Branco</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Quilometragem</span>
+                        <span class="spec-value">45.000 km</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Itens de série</span>
+                        <span class="spec-value">Ar-condicionado, vidros elétricos dianteiros, travas elétricas, som Bluetooth, airbag duplo, ABS</span>
+                    </div>
+                </div>
+                
+                <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Sobre mais informações
+                </a>
+            </div>
+
+            <!-- Vehicle 2: Toyota Corolla -->
+            <div class="carousel-container" style="margin-top: 60px;">
+                <div class="carousel" id="carousel2">
+                    <div class="carousel-slide">
+                        <img src="assets/logo/car/corolla-frente-2019-prata.jpg" alt="Toyota Corolla Frente">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/logo/car/traseira-corolla-2019.jpg" alt="Toyota Corolla Traseira">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/logo/car/lateral-corolla-2019-prata.webp" alt="Toyota Corolla Lateral Direita">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/logo/car/banco-motorista-corolla-2019.webp" alt="Toyota Corolla Lateral Esquerda">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/logo/car/painel-corolla-2019.webp" alt="Toyota Corolla Interior Bancos">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/logo/car/painel-frontal-corolla-2019.webp" alt="Toyota Corolla Interior Painel">
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="prev2">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn" id="next2">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="vehicle-info animate-fade-in" style="margin-top: 30px;">
+                <h3 class="vehicle-title">Toyota Corolla 2.0 XEi Automático 2019</h3>
+                <p class="vehicle-description">Conforto, tecnologia e desempenho em um só carro.</p>
+                
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Ano/Modelo</span>
+                        <span class="spec-value">2019</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Motorização</span>
+                        <span class="spec-value">2.0 16V Flex</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Câmbio</span>
+                        <span class="spec-value">Automático CVT</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Direção</span>
+                        <span class="spec-value">Eletroassistida</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Combustível</span>
+                        <span class="spec-value">Flex (Gasolina / Etanol)</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Potência</span>
+                        <span class="spec-value">154 cv (etanol) / 143 cv (gasolina)</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Consumo médio</span>
+                        <span class="spec-value">11,4 km/l (gasolina) / 7,9 km/l (etanol)</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Porta-malas</span>
+                        <span class="spec-value">470 litros</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Cor</span>
+                        <span class="spec-value">Prata</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Quilometragem</span>
+                        <span class="spec-value">65.000 km</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Itens de série</span>
+                        <span class="spec-value">Ar digital, direção elétrica, piloto automático, som com Bluetooth, câmera de ré, bancos em couro, 7 airbags, controle de tração e estabilidade</span>
+                    </div>
+                </div>
+                
+                <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Sobre mais informções
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <h2 class="section-title">Fale com a Meira Veículos</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Quer saber mais sobre um veículo ou agendar uma visita?</h3>
+                    <p>Preencha o formulário abaixo ou fale conosco pelo WhatsApp.</p>
+                    
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.704836626042!2d-46.3169444!3d-23.5422222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5f7b3e7c8b3d%3A0x1a1b1c1d1e1f1a1b!2sSuzano%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Meira Veículos</div>
+                    <p>Concessionária especializada em carros usados de qualidade em Suzano.</p>
+                    <div class="social-icons">
+                        <a href="https://instagram.com" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/5511999999999" target="_blank" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#veiculos">Veículos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                © 2025 Meira Veículos. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Fixed Button -->
+    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-fixed" title="Fale conosco no WhatsApp">
+        <i class="fab fa-whatsapp fa-2x"></i>
+    </a>
+
+    <script>
+        // Carousel functionality
+        class Carousel {
+            constructor(carouselId, prevBtnId, nextBtnId) {
+                this.carousel = document.getElementById(carouselId);
+                this.slides = this.carousel.querySelectorAll('.carousel-slide');
+                this.prevBtn = document.getElementById(prevBtnId);
+                this.nextBtn = document.getElementById(nextBtnId);
+                this.currentIndex = 0;
+                this.totalSlides = this.slides.length;
+                this.autoPlayInterval = null;
+                
+                this.init();
+            }
+            
+            init() {
+                this.updateCarousel();
+                this.setupEventListeners();
+                this.startAutoPlay();
+            }
+            
+            updateCarousel() {
+                const offset = -this.currentIndex * 100;
+                this.carousel.style.transform = `translateX(${offset}%)`;
+            }
+            
+            nextSlide() {
+                this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
+                this.updateCarousel();
+            }
+            
+            prevSlide() {
+                this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
+                this.updateCarousel();
+            }
+            
+            setupEventListeners() {
+                this.nextBtn.addEventListener('click', () => {
+                    this.nextSlide();
+                    this.resetAutoPlay();
+                });
+                
+                this.prevBtn.addEventListener('click', () => {
+                    this.prevSlide();
+                    this.resetAutoPlay();
+                });
+            }
+            
+            startAutoPlay() {
+                this.autoPlayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, 25000);
+            }
+            
+            resetAutoPlay() {
+                clearInterval(this.autoPlayInterval);
+                this.startAutoPlay();
+            }
+        }
+
+        // Hero Carousel functionality
+        class HeroCarousel {
+            constructor() {
+                this.slides = document.querySelectorAll('.hero-slide');
+                this.currentIndex = 0;
+                this.autoPlayInterval = null;
+                this.init();
+            }
+
+            init() {
+                this.showSlide(this.currentIndex);
+                this.startAutoPlay();
+            }
+
+            showSlide(index) {
+                this.slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+            }
+
+            nextSlide() {
+                this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+                this.showSlide(this.currentIndex);
+            }
+
+            startAutoPlay() {
+                this.autoPlayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, 15000);
+            }
+        }
+
+        // Initialize carousels when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            new Carousel('carousel1', 'prev1', 'next1');
+            new Carousel('carousel2', 'prev2', 'next2');
+
+            // Initialize hero carousel
+            new HeroCarousel();
+
+            // Hamburger menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    hamburger.classList.toggle('active');
+                });
+
+                // Close menu when clicking on a link
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    });
+                });
+            }
+
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // In a real implementation, you would send the form data to a server
+                    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                    contactForm.reset();
+                });
+            }
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
